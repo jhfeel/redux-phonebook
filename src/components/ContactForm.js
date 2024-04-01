@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const dispatch = useDispatch();
 
   const addContact = (event) => {
     event.preventDefault();
     dispatch({ type: "ADD_CONTACT", payload: { name, phoneNumber } });
+    setName("");
+    setPhoneNumber("");
   };
 
   return (
@@ -30,7 +32,7 @@ const ContactForm = () => {
         <Form.Group className="mb-3" controlId="formContact">
           <Form.Label>전화번호</Form.Label>
           <Form.Control
-            type="number"
+            type="text"
             placeholder="전화번호를 입력하세요"
             onChange={(event) => {
               setPhoneNumber(event.target.value);
